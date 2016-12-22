@@ -14,7 +14,7 @@ angular.module('prototipoApp')
     $scope.CLIENTE_ID = "794841744026-6p2i7lmiho204r4li2bb1ektd7j9dbd4.apps.googleusercontent.com";
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
     $scope.RESPONSE_TYPE = "code";
-    $scope.SCOPE = "openid user";
+    $scope.SCOPE = "openid profile email";
 
     var memoryToken;
     $scope.memoryTokenHandler = {
