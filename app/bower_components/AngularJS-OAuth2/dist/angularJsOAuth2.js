@@ -310,8 +310,7 @@
 					template: ""
 				})
 		}])
-		.directive('oauth2', ['$rootScope', '$http', '$window', '$location', '$templateCache', '$compile', 'AccessToken', 'Endpoint',
-    function($rootScope, $http, $window, $location, $templateCache, $compile, accessToken, endpoint) {
+		.directive('oauth2', ['$rootScope', '$http', '$window', '$location', '$templateCache', '$compile', 'AccessToken', 'Endpoint', function($rootScope, $http, $window, $location, $templateCache, $compile, accessToken, endpoint) {
 			var definition = {
 				restrict: 'E',
 				replace: true,
@@ -402,6 +401,9 @@
 					if( $location.path().indexOf("/silent-renew") == 0 && window.top && window.parent && window !== window.top) {
 						// A 'child' frame failed to authorize.
 						window.parent.postMessage("oauth2.silentRenewFailure", location.protocol + "//" + location.host);
+					}
+					else {
+						if (scope.unauthorizedAccessUrl.length > 0) {
 							$location.path(scope.unauthorizedAccessUrl);
 						}
 					}
