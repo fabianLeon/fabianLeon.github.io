@@ -6,7 +6,7 @@ var params = {},
 while (m = regex.exec(queryString)) {
   params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 }
-
+console.log(params);
 // And send the token over to the server
 var req = new XMLHttpRequest();
 // consider using POST so query isn't logged
@@ -17,9 +17,11 @@ req.onreadystatechange = function(e) {
     if (req.status == 200) {
       window.location = params['state']
     } else if (req.status == 400) {
-      alert('There was an error processing the token.')
+      //alert('There was an error processing the token.')
     } else {
-      alert('something else other than 200 was returned')
+
+      //alert('something else other than 200 was returned')
+      console.log(req);
     }
   }
 };
