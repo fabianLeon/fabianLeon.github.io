@@ -29,7 +29,9 @@ req.send(null);
 
 
 angular.module('prototipoApp')
-  .controller('menuCtrl', function($location, $http, $scope) {
+  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
+    $scope.local = $localStorage;
+    $scope.local = params;
     var ctrl = this;
     ctrl.actual = $location.path();
     //Configuracion de parametros identificacion unica

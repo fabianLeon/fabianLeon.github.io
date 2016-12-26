@@ -39,6 +39,8 @@ module.exports = function(config) {
       'bower_components/angular-tree-control/angular-tree-control.js',
       'bower_components/pdfmake/build/pdfmake.js',
       'bower_components/pdfmake/build/vfs_fonts.js',
+      'bower_components/ngstorage/ngStorage.js',
+      'bower_components/kjur-jsrsasign/jsrsasign-latest-all-min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
