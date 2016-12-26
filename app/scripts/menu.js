@@ -30,8 +30,8 @@ req.send(null);
 
 angular.module('prototipoApp')
   .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
-    $scope.local = $localStorage;
-    $scope.local = params;
+    $scope.local = $localStorage.$default(params);
+    console.log($scope.local);
     var ctrl = this;
     ctrl.actual = $location.path();
     //Configuracion de parametros identificacion unica
@@ -47,19 +47,6 @@ angular.module('prototipoApp')
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
     $scope.RESPONSE_TYPE = "id_token token";
     $scope.SCOPE = "openid profile email";
-
-    var memoryToken;
-    $scope.memoryTokenHandler = {
-      get: function() {
-        return memoryToken;
-      },
-      set: function($window, token) {
-        memoryToken = token;
-      },
-      clear: function() {
-        memoryToken = undefined;
-      }
-    };
 
 
 
