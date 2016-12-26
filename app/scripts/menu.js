@@ -17,9 +17,11 @@ req.onreadystatechange = function(e) {
     if (req.status == 200) {
       window.location = params['state']
     } else if (req.status == 400) {
-      alert('There was an error processing the token.')
+      //alert('There was an error processing the token.')
     } else {
-      alert('something else other than 200 was returned')
+
+      //alert('something else other than 200 was returned')
+      console.log(req);
     }
   }
 };
