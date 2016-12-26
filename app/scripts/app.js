@@ -25,7 +25,8 @@ angular
     'ui.grid.cellNav',
     'ui.grid.treeView',
     'ui.grid.selection',
-    'ui.grid.exporter'
+    'ui.grid.exporter',
+    'ngStorage'
   ])
     .config(['$locationProvider','$routeProvider', function($locationProvider, $routeProvider) {
       $locationProvider.hashPrefix("");
