@@ -46,12 +46,14 @@ angular.module('prototipoApp')
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
     $scope.RESPONSE_TYPE = "id_token token";
     $scope.SCOPE = "openid profile email";
+    
+    $scope.token = null;
 
     if($scope.local!== {}){
       var headerObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
-      var payloadObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
+      $scope.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
       console.log(headerObj);
-      console.log(payloadObj);
+      console.log($scope.token);
     };
 
     //Pendiente por definir json del menu
