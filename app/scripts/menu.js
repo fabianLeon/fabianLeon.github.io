@@ -10,7 +10,7 @@ console.log(params);
 // And send the token over to the server
 var req = new XMLHttpRequest();
 // consider using POST so query isn't logged
-req.open('GET', 'https://' + window.location.host + '/catchtoken?' + queryString, true);
+/*req.open('GET', 'https://' + window.location.host + '/catchtoken?' + queryString, true);
 
 req.onreadystatechange = function(e) {
   if (req.readyState == 4) {
@@ -26,7 +26,7 @@ req.onreadystatechange = function(e) {
   }
 };
 req.send(null);
-
+*/
 
 angular.module('prototipoApp')
   .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
