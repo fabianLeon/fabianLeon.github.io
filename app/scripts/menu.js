@@ -54,7 +54,7 @@ angular.module('prototipoApp')
     };
 
     $scope.token = null;
-
+    console.log("id_token: " + $scope.local.id_token);
     if ($scope.local.id_token !== "undefined") {
       var headerObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
       $scope.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
