@@ -55,7 +55,7 @@ angular.module('prototipoApp')
     };
 
     $scope.token = null;
-    console.log("id_token: " + $scope.local.id_token);
+    
     if (typeof $scope.local.id_token === 'undefined' || $scope.local.id_token === null ) {
       console.log("hola");
     } else {

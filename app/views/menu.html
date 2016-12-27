@@ -173,15 +173,15 @@
       </ul>
       <!-- /.dropdown-user -->
     </li>
-    <li ng-if="local.id_token == null"><a >
+    <li ng-if="local.id_token == null">
       <oauth2
           authorization-url="{{AUTORIZATION_URL}}"
           client-id="{{CLIENTE_ID}}"
           redirect-url="{{REDIRECT_URL}}"
           response-type="{{RESPONSE_TYPE}}"
-          scope="{{SCOPE}}">
+          scope="{{SCOPE}}"
+          button-class="btn btn-outline btn-primary btn-sm">
         </oauth2>
-      </a>
     </li>
     <!-- /.dropdown -->
   </ul>
