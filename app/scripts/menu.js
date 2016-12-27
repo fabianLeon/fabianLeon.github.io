@@ -17,7 +17,7 @@ req.onreadystatechange = function(e) {
     if (req.status == 200) {
       window.location = params['state']
     } else if (req.status == 400) {
-      //alert('There was an error processing the token.')
+      alert('There was an error processing the token.')
     } else {
 
       //alert('something else other than 200 was returned')
@@ -29,7 +29,7 @@ req.send(null);
 
 
 angular.module('prototipoApp')
-  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
+  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage ) {
     $scope.local = $localStorage.$default(params);
     console.log($scope.local);
     var ctrl = this;
@@ -41,15 +41,18 @@ angular.module('prototipoApp')
     $scope.RESPONSE_TYPE    = "code";
     $scope.SCOPE            = "openid";
 */
-    var sJWT = KJUR.jws.JWS.sign("HS256", sHeader, sPayload, {b64u: $scope.local.id_token});
-    console.log(sJWT);
     $scope.AUTORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth";
     $scope.CLIENTE_ID = "794841744026-6p2i7lmiho204r4li2bb1ektd7j9dbd4.apps.googleusercontent.com";
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
     $scope.RESPONSE_TYPE = "id_token token";
     $scope.SCOPE = "openid profile email";
 
-
+    if($scope.local!== {}){
+      var headerObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
+      var payloadObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
+      console.log(headerObj);
+      console.log(payloadObj);
+    };
 
     //Pendiente por definir json del menu
     (function($) {
