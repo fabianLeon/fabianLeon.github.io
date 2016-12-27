@@ -48,17 +48,9 @@ angular.module('prototipoApp')
     $scope.SCOPE = "openid profile email";
 
 
-    $scope.login = function() {
-      var client_id = "your client id";
-      var scope = "email";
-      var redirect_uri = "http://localhost:9000";
-      var response_type = "token";
-      var url =   $scope.AUTORIZATION_URL + '?' +
-        'client_id=' + encodeURIComponent($scope.CLIENTE_ID) + '&' +
-        'redirect_uri=' + encodeURIComponent($scope.REDIRECT_URL) + '&' +
-        'response_type=' + encodeURIComponent($scope.RESPONSE_TYPE ) + '&' +
-        'scope=' + encodeURIComponent($scope.SCOPE);
-      window.location.replace(url);
+    $scope.logout = function() {
+      $scope.token = null;
+      $localStorage.$default(null);
     };
 
     $scope.token = null;
