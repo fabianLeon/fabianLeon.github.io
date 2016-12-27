@@ -41,7 +41,8 @@ angular.module('prototipoApp')
     $scope.RESPONSE_TYPE    = "code";
     $scope.SCOPE            = "openid";
 */
-
+    var sJWT = KJUR.jws.JWS.sign("HS256", sHeader, sPayload, {b64u: $scope.local.id_token});
+    console.log(sJWT);
     $scope.AUTORIZATION_URL = "https://accounts.google.com/o/oauth2/v2/auth";
     $scope.CLIENTE_ID = "794841744026-6p2i7lmiho204r4li2bb1ektd7j9dbd4.apps.googleusercontent.com";
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
