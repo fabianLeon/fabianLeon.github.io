@@ -29,7 +29,7 @@ req.send(null);
 
 
 angular.module('prototipoApp')
-  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage ) {
+  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
     $scope.local = $localStorage.$default(params);
     console.log($scope.local);
     var ctrl = this;
@@ -48,19 +48,22 @@ angular.module('prototipoApp')
     $scope.SCOPE = "openid profile email";
 
 
-      $scope.login = function() {
-        var client_id = "your client id";
-        var scope = "email";
-        var redirect_uri = "http://localhost:9000";
-        var response_type = "token";
-        var url = $scope.AUTORIZATION_URL + "?scope=" + $scope.SCOPE + "&client_id=" + $scope.CLIENTE_ID + "&redirect_uri=" + $scope.REDIRECT_URL +
-          "&response_type=" + $scope.RESPONSE_TYPE;
-        window.location.replace(url);
-      };
+    $scope.login = function() {
+      var client_id = "your client id";
+      var scope = "email";
+      var redirect_uri = "http://localhost:9000";
+      var response_type = "token";
+      var url =   $scope.AUTORIZATION_URL + '?' +
+        'client_id=' + encodeURIComponent($scope.CLIENTE_ID) + '&' +
+        'redirect_uri=' + encodeURIComponent($scope.REDIRECT_URL) + '&' +
+        'response_type=' + encodeURIComponent($scope.RESPONSE_TYPE ) + '&' +
+        'scope=' + encodeURIComponent($scope.SCOPE);
+      window.location.replace(url);
+    };
 
     $scope.token = null;
 
-    if($scope.local!== {}){
+    if ($scope.local !== {}) {
       var headerObj = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
       $scope.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
       console.log(headerObj);
