@@ -46,7 +46,18 @@ angular.module('prototipoApp')
     $scope.REDIRECT_URL = "https://fabianleon.github.io/app";
     $scope.RESPONSE_TYPE = "id_token token";
     $scope.SCOPE = "openid profile email";
-    
+
+
+      $scope.login = function() {
+        var client_id = "your client id";
+        var scope = "email";
+        var redirect_uri = "http://localhost:9000";
+        var response_type = "token";
+        var url = $scope.AUTORIZATION_URL + "?scope=" + $scope.SCOPE + "&client_id=" + $scope.CLIENTE_ID + "&redirect_uri=" + $scope.REDIRECT_URL +
+          "&response_type=" + $scope.RESPONSE_TYPE;
+        window.location.replace(url);
+      };
+
     $scope.token = null;
 
     if($scope.local!== {}){
