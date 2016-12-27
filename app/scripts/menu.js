@@ -51,7 +51,7 @@ angular.module('prototipoApp')
     $scope.logout = function() {
       $scope.token = null;
       $localStorage.$reset();
-      window.location.replace(ctrl.actual);
+      window.location.replace(ctrl.actual+"/app");
     };
 
     $scope.token = null;
