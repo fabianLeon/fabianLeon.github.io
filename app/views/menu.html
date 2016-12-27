@@ -156,11 +156,11 @@
       <!-- /.dropdown-alerts -->
     </li>
     <!-- /.dropdown -->
-    <li class="dropdown">
+    <li class="dropdown" ng-if="local.id_token != null">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#/">
         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
       </a>
-      <ul class="dropdown-menu dropdown-user">
+      <ul class="dropdown-menu dropdown-user" >
         <li><a ng-click="">
             <i class="fa fa-sign-in fa-fw"></i> Login</a>
           </a>
@@ -173,7 +173,7 @@
       </ul>
       <!-- /.dropdown-user -->
     </li>
-    <li><a >
+    <li ng-if="local.id_token == null"><a >
       <oauth2
           authorization-url="{{AUTORIZATION_URL}}"
           client-id="{{CLIENTE_ID}}"
