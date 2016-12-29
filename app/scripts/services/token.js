@@ -17,13 +17,13 @@ var params = {},
 while (m = regex.exec(queryString)) {
   params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 }
-console.log(params);
-console.log(location.hash.substring(1));
+//console.log(params);
+//console.log(location.hash.substring(1));
 // And send the token over to the server
 var req = new XMLHttpRequest();
 // consider using POST so query isn't logged
 var query = 'https://' + window.location.host + '?' + queryString;
-console.log(query);
+//console.log(query);
 req.open('GET',query , true);
 
 req.onreadystatechange = function(e) {
@@ -35,7 +35,7 @@ req.onreadystatechange = function(e) {
     } else {
 
       //alert('something else other than 200 was returned')
-      console.log(req);
+      //console.log(req);
     }
   }
 };
