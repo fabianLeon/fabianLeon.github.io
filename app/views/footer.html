@@ -12,35 +12,21 @@
         <div class="logofooter"> Redes Sociales</div>
         <div class="col-md-4">
           <a href="https://es-la.facebook.com/UniversidadDistrital/" target="_blank">
-            <i class="fa fa-facebook-square 3" aria-hidden="true"></i> </a>
+            <i class="fa fa-facebook-square fa-4" aria-hidden="true"></i> </a>
         </div>
         <div class="col-md-4">
           <a href="https://plus.google.com/106543869133961089207?hl=es" target="_blank">
-            <i class="fa fa-google-plus 3" aria-hidden="true"></i></a>
+            <i class="fa fa-google-plus fa-4" aria-hidden="true"></i></a>
         </div>
         <div class="col-md-4">
           <a href="https://plus.google.com/106543869133961089207?hl=es" target="_blank">
-            <i class="fa fa-twitter 3" aria-hidden="true"></i></a>
+            <i class="fa fa-twitter fa-4" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="col-md-4 col-sm-6 paddingtop-bottom">
         <h6 class="heading7">ENLACES UNIVERSITARIOS</h6>
         <ul class="footer-ul">
-
-          <li><a href="#"> Transparencia</a></li>
-          <li><a href="#"> Normatividad</a></li>
-          <li><a href="#"> Trámites</a></li>
-          <li><a href="#"> General</a></li>
-          <li><a href="#"> Docente</a></li>
-          <li><a href="#"> Académica Estudiantil </a></li>
-          <li><a href="#"> Derechos Pecuniarios</a></li>
-          <li><a href="#"> Sistema de Notificaciones</a></li>
-          <li><a href="#"> CSU</a></li>
-          <li><a href="#"> PIGA</a></li>
-          <li><a href="#"> Bitácora</a></li>
-          <li><a href="#"> Noticias anterioresg</a></li>
-          <li><a href="#"> Área de Red UDNet</a></li>
-          <li><a href="#"> Administración PWI</a></li>
+          <li ng-repeat="{{elemento as footerCtrl.enlaces_universitarios}}"><a href="{{elemento.link}}"> {{elemento.nombre}}</a></li>
         </ul>
       </div>
 
