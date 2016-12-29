@@ -74,7 +74,7 @@ angular.module('prototipoApp')
         }
       },
       logout: function(){
-        $scope.token = null;
+        service.token = null;
         $localStorage.$reset();
         //$sessionStorage.$reset();
         $location.update($location.absUrl());
