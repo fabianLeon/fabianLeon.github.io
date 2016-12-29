@@ -31,7 +31,7 @@ req.send(null);
 */
 
 angular.module('prototipoApp')
-  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage, token) {
+  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage, token_service) {
     $scope.local = $localStorage.$default(params);
     console.log($scope.local);
     var ctrl = this;
