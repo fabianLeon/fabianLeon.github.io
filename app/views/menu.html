@@ -156,7 +156,7 @@
       <!-- /.dropdown-alerts -->
     </li>
     <!-- /.dropdown -->
-    <li class="dropdown" ng-if="local.id_token != null">
+    <li class="dropdown" ng-if="token_service.live_token">
       <a class="dropdown-toggle" data-toggle="dropdown" ng-href="actual">
         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
       </a>
@@ -173,14 +173,14 @@
       </ul>
       <!-- /.dropdown-user -->
     </li>
-    <li ng-if="local.id_token == null">
+    <li ng-if="token_service.live_token">
       <oauth2
-          authorization-url="{{config.AUTORIZATION_URL}}"
-          client-id="{{config.CLIENTE_ID}}"
-          redirect-url="{{config.REDIRECT_URL}}"
-          response-type="{{config.RESPONSE_TYPE}}"
-          scope="{{config.SCOPE}}"
-          button-class="btn btn-outline btn-primary btn-sm">
+          authorization-url="{{token_service.AUTORIZATION_URL}}"
+          client-id="{{token_service.CLIENTE_ID}}"
+          redirect-url="{{token_service.REDIRECT_URL}}"
+          response-type="{{token_service.RESPONSE_TYPE}}"
+          scope="{{token_service.SCOPE}}"
+          button-class="{{token_service.BUTTON_CLASS}}">
         </oauth2>
     </li>
     <!-- /.dropdown -->

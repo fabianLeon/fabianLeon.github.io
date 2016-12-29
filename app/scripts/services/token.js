@@ -42,15 +42,42 @@ req.send(null);
 */
 
 angular.module('prototipoApp')
-  .factory('token_service', function($http, $localStorage, $sessionStorage) {
+  .factory('token_service', function($location, $http, $localStorage, $sessionStorage) {
     var service = {
+      local: $localStorage.$default(params),
+      session: $sessionStorage.default(params),
+      header: null,
+      token: null;
+      //Configuracion de parametros identificacion unica oas-wso2
+      /*$scope.AUTORIZATION_URL = "https://wso2.intranetoas.udistrital.edu.co:9443/oauth2/authorize";
+      $scope.CLIENTE_ID       = "mEEMLpePonJ91jKYB_s8sbE8slQa";
+      $scope.REDIRECT_URL     = "http://10.20.2.52/prototipo/app";
+      $scope.RESPONSE_TYPE    = "code";
+      $scope.SCOPE            = "openid";
+      */
+      //Configuracion de parametros identificacion unica google
       config: {
         AUTORIZATION_URL: "https://accounts.google.com/o/oauth2/v2/auth",
-        CLIENTE_ID:       "794841744026-6p2i7lmiho204r4li2bb1ektd7j9dbd4.apps.googleusercontent.com",
-        REDIRECT_URL:     "https://fabianleon.github.io/app",
-        RESPONSE_TYPE:    "id_token token",
-        SCOPE:            "openid profile email",
-        BUTTON_CLASS:     "btn btn-outline btn-primary btn-sm"
+        CLIENTE_ID: "794841744026-6p2i7lmiho204r4li2bb1ektd7j9dbd4.apps.googleusercontent.com",
+        REDIRECT_URL: "https://fabianleon.github.io/app",
+        RESPONSE_TYPE: "id_token token",
+        SCOPE: "openid profile email",
+        BUTTON_CLASS: "btn btn-outline btn-primary btn-sm"
+      },
+      live_token: function() {
+        if (typeof service.local.id_token === 'undefined' || service.local.id_token === null) {
+          return false;
+        } else {
+          service.header = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
+          service.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
+          return true;
+        }
+      },
+      logout: function(){
+        $scope.token = null;
+        $localStorage.$reset();
+        $sessionStorage.$reset();
+        $location.update($location.absUrl());
       }
     };
     return service;
