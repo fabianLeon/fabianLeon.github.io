@@ -51,12 +51,15 @@ angular.module('prototipoApp')
       header: null,
       token: null,
       //Configuracion de parametros identificacion unica oas-wso2
-      /*$scope.AUTORIZATION_URL = "https://wso2.intranetoas.udistrital.edu.co:9443/oauth2/authorize";
-      $scope.CLIENTE_ID       = "mEEMLpePonJ91jKYB_s8sbE8slQa";
-      $scope.REDIRECT_URL     = "http://10.20.2.52/prototipo/app";
-      $scope.RESPONSE_TYPE    = "code";
-      $scope.SCOPE            = "openid";
-      */
+      /*
+      config: {
+        AUTORIZATION_URL: "https://wso2.intranetoas.udistrital.edu.co:9443/oauth2/authorize",
+        CLIENTE_ID: "mEEMLpePonJ91jKYB_s8sbE8slQa",
+        REDIRECT_URL:  "http://10.20.2.52/prototipo/app",
+        RESPONSE_TYPE: "id_token token",
+        SCOPE: "openid profile email",
+        BUTTON_CLASS: "btn btn-outline btn-primary btn-sm"
+      },*/
       //Configuracion de parametros identificacion unica google
       config: {
         AUTORIZATION_URL: "https://accounts.google.com/o/oauth2/v2/auth",
