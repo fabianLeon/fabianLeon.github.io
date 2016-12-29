@@ -44,7 +44,7 @@
       </ul>
     </li>
     <li class="dropdown">
-      <a ng-href="/#/" class="dropdown-toggle" data-toggle="dropdown" href="#/">
+      <a ng-href="/#/" class="dropdown-toggle" data-toggle="dropdown" ng-href="actual">
         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-messages">
@@ -85,7 +85,7 @@
         </li>
         <li class="divider"></li>
         <li>
-          <a class="text-center" href="#/">
+          <a class="text-center" ng-href="actual">
             <strong>Read All Messages</strong>
             <i class="fa fa-angle-right"></i>
           </a>
@@ -97,7 +97,7 @@
     <!-- /.dropdown-tasks -->
     <!-- /.dropdown -->
     <li class="dropdown">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#/">
+      <a class="dropdown-toggle" data-toggle="dropdown" ng-href="actual">
         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-alerts">
@@ -147,7 +147,7 @@
         </li>
         <li class="divider"></li>
         <li>
-          <a class="text-center" href="#/">
+          <a class="text-center" ng-href="actual">
             <strong>See All Alerts</strong>
             <i class="fa fa-angle-right"></i>
           </a>
@@ -157,7 +157,7 @@
     </li>
     <!-- /.dropdown -->
     <li class="dropdown" ng-if="local.id_token != null">
-      <a class="dropdown-toggle" data-toggle="dropdown" href="#/">
+      <a class="dropdown-toggle" data-toggle="dropdown" ng-href="actual">
         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-user" >
@@ -175,11 +175,11 @@
     </li>
     <li ng-if="local.id_token == null">
       <oauth2
-          authorization-url="{{AUTORIZATION_URL}}"
-          client-id="{{CLIENTE_ID}}"
-          redirect-url="{{REDIRECT_URL}}"
-          response-type="{{RESPONSE_TYPE}}"
-          scope="{{SCOPE}}"
+          authorization-url="{{config.AUTORIZATION_URL}}"
+          client-id="{{config.CLIENTE_ID}}"
+          redirect-url="{{config.REDIRECT_URL}}"
+          response-type="{{config.RESPONSE_TYPE}}"
+          scope="{{config.SCOPE}}"
           button-class="btn btn-outline btn-primary btn-sm">
         </oauth2>
     </li>
