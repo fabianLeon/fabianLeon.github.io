@@ -45,7 +45,7 @@ angular.module('prototipoApp')
   .factory('token_service', function($location, $http, $localStorage, $sessionStorage) {
     var service = {
       local: $localStorage.$default(params),
-      session: $sessionStorage.default(params),
+      //session: $sessionStorage.default(params),
       header: null,
       token: null,
       //Configuracion de parametros identificacion unica oas-wso2
@@ -76,7 +76,7 @@ angular.module('prototipoApp')
       logout: function(){
         $scope.token = null;
         $localStorage.$reset();
-        $sessionStorage.$reset();
+        //$sessionStorage.$reset();
         $location.update($location.absUrl());
       }
     };
