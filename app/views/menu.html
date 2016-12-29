@@ -173,7 +173,7 @@
       </ul>
       <!-- /.dropdown-user -->
     </li>
-    <li ng-if="token_service.live_token">
+    <li ng-if="!token_service.live_token">
       <oauth2
           authorization-url="{{token_service.config.AUTORIZATION_URL}}"
           client-id="{{token_service.config.CLIENTE_ID}}"
