@@ -7,6 +7,7 @@ while (m = regex.exec(queryString)) {
   params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
 }
 console.log(params);
+console.log(location.hash.substring(1));
 // And send the token over to the server
 var req = new XMLHttpRequest();
 // consider using POST so query isn't logged
@@ -30,11 +31,12 @@ req.send(null);
 */
 
 angular.module('prototipoApp')
-  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage) {
+  .controller('menuCtrl', function($location, $http, $scope, $localStorage, $sessionStorage, token) {
     $scope.local = $localStorage.$default(params);
     console.log($scope.local);
     var ctrl = this;
-    ctrl.actual = $location.path();
+    $scope.actual = $location.path();
+    console.log($location.absUrl());
     console.log($location.absUrl());
     //Configuracion de parametros identificacion unica
     /*$scope.AUTORIZATION_URL = "https://wso2.intranetoas.udistrital.edu.co:9443/oauth2/authorize";
