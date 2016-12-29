@@ -77,7 +77,7 @@ angular.module('prototipoApp')
         service.token = null;
         $localStorage.$reset();
         //$sessionStorage.$reset();
-        $location.update($location.absUrl());
+        $location.absUrl(($location.absUrl());
       }
     };
     return service;
