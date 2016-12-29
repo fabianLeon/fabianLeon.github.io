@@ -22,7 +22,9 @@ console.log(location.hash.substring(1));
 // And send the token over to the server
 var req = new XMLHttpRequest();
 // consider using POST so query isn't logged
-req.open('GET', 'https://' + window.location.host + '?' + queryString, true);
+var query = 'https://' + window.location.host + '?' + queryString;
+console.log(query);
+req.open('GET',query , true);
 
 req.onreadystatechange = function(e) {
   if (req.readyState == 4) {
@@ -66,11 +68,11 @@ angular.module('prototipoApp')
       },
       live_token: function() {
         if (typeof service.local.id_token === 'undefined' || service.local.id_token === null) {
-          return true;
+          return false;
         } else {
           service.header = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[0]));
           service.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[1]));
-          return false;
+          return true;
         }
       },
       logout: function(){
