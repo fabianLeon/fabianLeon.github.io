@@ -25,6 +25,7 @@ req.onreadystatechange = function(e) {
     }
   }
 };
+/*
 req.send(null);
 */
 
