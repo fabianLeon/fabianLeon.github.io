@@ -42,7 +42,7 @@ req.send(null);
 */
 
 angular.module('prototipoApp')
-  .factory('token_service', function($location, $http, $localStorage, $sessionStorage) {
+  .factory('token_service', function($location, $http, $localStorage) {
     var service = {
       local: $localStorage.$default(params),
       //session: $sessionStorage.default(params),

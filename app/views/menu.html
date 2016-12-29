@@ -175,12 +175,12 @@
     </li>
     <li ng-if="token_service.live_token">
       <oauth2
-          authorization-url="{{token_service.AUTORIZATION_URL}}"
-          client-id="{{token_service.CLIENTE_ID}}"
-          redirect-url="{{token_service.REDIRECT_URL}}"
-          response-type="{{token_service.RESPONSE_TYPE}}"
-          scope="{{token_service.SCOPE}}"
-          button-class="{{token_service.BUTTON_CLASS}}">
+          authorization-url="{{token_service.config.AUTORIZATION_URL}}"
+          client-id="{{token_service.config.CLIENTE_ID}}"
+          redirect-url="{{token_service.config.REDIRECT_URL}}"
+          response-type="{{token_service.config.RESPONSE_TYPE}}"
+          scope="{{token_service.config.SCOPE}}"
+          button-class="{{token_service.config.BUTTON_CLASS}}">
         </oauth2>
     </li>
     <!-- /.dropdown -->

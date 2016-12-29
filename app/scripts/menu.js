@@ -4,7 +4,7 @@ angular.module('prototipoApp')
     console.log($scope.local);
     var ctrl = this;
     $scope.actual = $location.path();
-    $scope.token_service = token_service.config;
+    $scope.token_service = token_service;
 
 
     //Pendiente por definir json del menu
