@@ -1,7 +1,6 @@
 
 angular.module('prototipoApp')
   .controller('menuCtrl', function($location, $http, $scope, token_service) {
-    console.log($scope.local);
     var ctrl = this;
     $scope.actual = $location.path();
     $scope.token_service = token_service;
