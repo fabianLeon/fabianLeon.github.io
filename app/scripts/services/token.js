@@ -66,11 +66,11 @@ angular.module('prototipoApp')
       },
       live_token: function() {
         if (typeof service.local.id_token === 'undefined' || service.local.id_token === null) {
-          return false;
+          return true;
         } else {
           service.header = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[0]));
           service.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[1]));
-          return true;
+          return false;
         }
       },
       logout: function(){
