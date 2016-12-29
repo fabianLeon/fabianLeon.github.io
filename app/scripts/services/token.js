@@ -68,8 +68,8 @@ angular.module('prototipoApp')
         if (typeof service.local.id_token === 'undefined' || service.local.id_token === null) {
           return false;
         } else {
-          service.header = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[0]));
-          service.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8($scope.local.id_token.split(".")[1]));
+          service.header = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[0]));
+          service.token = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(service.local.id_token.split(".")[1]));
           return true;
         }
       },
