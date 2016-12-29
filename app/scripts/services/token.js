@@ -8,7 +8,7 @@
  * Factory in the prototipoApp.
  */
 angular.module('prototipoApp')
-  .factory('token', function () {
+  .factory('token_service', function () {
     // Service logic
     // ...
 
