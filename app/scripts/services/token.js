@@ -47,7 +47,7 @@ angular.module('prototipoApp')
       local: $localStorage.$default(params),
       session: $sessionStorage.default(params),
       header: null,
-      token: null;
+      token: null,
       //Configuracion de parametros identificacion unica oas-wso2
       /*$scope.AUTORIZATION_URL = "https://wso2.intranetoas.udistrital.edu.co:9443/oauth2/authorize";
       $scope.CLIENTE_ID       = "mEEMLpePonJ91jKYB_s8sbE8slQa";
