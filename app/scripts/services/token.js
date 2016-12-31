@@ -27,10 +27,10 @@ var query = 'https://' + window.location.host + '?' + queryString;
 req.open('GET',query , true);
 
 req.onreadystatechange = function(e) {
-  if (req.readyState == 4) {
-    if (req.status == 200) {
+  if (req.readyState === 4) {
+    if (req.status === 200) {
       window.location = params['state']
-    } else if (req.status == 400) {
+    } else if (req.status === 400) {
       alert('There was an error processing the token.')
     } else {
 

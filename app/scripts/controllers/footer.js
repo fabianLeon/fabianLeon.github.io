@@ -1,7 +1,7 @@
 angular.module('prototipoApp')
   .controller('footerCtrl', function($scope) {
     var ctrl = this;
-    ctrl.enlaces_universitarios = [{
+    $scope.enlaces_universitarios = [{
               nombre: 'Transparencia',
               link: '#/'
             }, {
@@ -44,4 +44,17 @@ angular.module('prototipoApp')
               nombre: 'Administración PWI',
               link: '#/'
             }];
+      console.log($scope.enlaces_universitarios);
+    $scope.copyright = "© Copyright 1995 - 2017 - Todos los Derechos Reservados ..."
+    $scope.map = [{
+              nombre: 'Preguntas Frecuentes',
+              link: '#/'
+            }, {
+              nombre: 'Mapa del Porta',
+              link: '#/'
+            }, {
+              nombre: 'Política de Privacidad',
+              link: '#/'
+            }];
+
   });
