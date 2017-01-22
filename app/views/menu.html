@@ -12,7 +12,7 @@
     <ul class="nav navbar-top-links navbar-right">
 
       <li ng-repeat="nivel_1 in menu_service">
-        <a ng-if="nivel_1.Opciones === null" ng-href="{{'#/' + nivel_1.Url}}" ng-click="refresh_breadcrum([nivel_1.Nombre])">
+        <a ng-if="nivel_1.Opciones === null" ng-href="{{'#/' + nivel_1.Url}}" ng-click="refresh_breadcrumb([nivel_1.Nombre])">
           {{nivel_1.Nombre}}
         </a>
       </li>
@@ -23,7 +23,7 @@
         </a>
         <ul class="dropdown-menu">
           <li ng-repeat="nivel_2 in nivel_1.Opciones">
-            <a ng-href="{{'#/' + nivel_2.Url}}" ng-if="nivel_2.Opciones === null" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre])">
+            <a ng-href="{{'#/' + nivel_2.Url}}" ng-if="nivel_2.Opciones === null" ng-click="refresh_breadcrumb([nivel_1.Nombre,nivel_2.Nombre])">
               {{nivel_2.Nombre}}
             </a>
           </li>
@@ -33,7 +33,7 @@
             </a>
             <ul class="dropdown-menu">
               <li ng-repeat="nivel_3 in nivel_2.Opciones">
-                <a ng-href="{{'#/' + nivel_3.Url}}" ng-if="nivel_3.Opciones === null" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre])">
+                <a ng-href="{{'#/' + nivel_3.Url}}" ng-if="nivel_3.Opciones === null" ng-click="refresh_breadcrumb([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre])">
                   {{nivel_3.Nombre}}
                 </a>
               </li>
@@ -42,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li ng-repeat="nivel_4 in nivel_3.Opciones">
-                    <a ng-href="{{'#/' + nivel_4.Url}}" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre, nivel_4.Nombre])">
+                    <a ng-href="{{'#/' + nivel_4.Url}}" ng-click="refresh_breadcrumb([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre, nivel_4.Nombre])">
                       {{nivel_4.Nombre}}
                     </a></li>
                 </ul>
