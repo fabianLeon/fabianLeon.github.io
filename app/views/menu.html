@@ -12,7 +12,8 @@
     <ul class="nav navbar-top-links navbar-right">
 
       <li ng-repeat="nivel_1 in menu_service">
-        <a  ng-if="nivel_1.Opciones === null"  ng-href="{{'#/' + nivel_1.Nombre}}">{{nivel_1.Nombre}}
+        <a ng-if="nivel_1.Opciones === null" ng-href="{{'#/' + nivel_1.Url}}" ng-click="refresh_breadcrum([nivel_1.Nombre])">
+          {{nivel_1.Nombre}}
         </a>
       </li>
       <li ng-repeat="nivel_1 in menu_service" class="dropdown">
@@ -22,19 +23,28 @@
         </a>
         <ul class="dropdown-menu">
           <li ng-repeat="nivel_2 in nivel_1.Opciones">
-            <a ng-href="{{'#/' + nivel_2.Nombre}}" ng-if="nivel_2.Opciones === null">{{nivel_2.Nombre}}
+            <a ng-href="{{'#/' + nivel_2.Url}}" ng-if="nivel_2.Opciones === null" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre])">
+              {{nivel_2.Nombre}}
             </a>
           </li>
           <li class="dropdown dropdown-submenu" ng-repeat="nivel_2 in nivel_1.Opciones">
-            <a ng-href="#/" class="dropdown-toggle" data-toggle="dropdown" ng-if="nivel_2.Opciones !== null">{{nivel_2.Nombre}}
+            <a ng-href="#/" class="dropdown-toggle" data-toggle="dropdown" ng-if="nivel_2.Opciones !== null">
+              {{nivel_2.Nombre}}
             </a>
             <ul class="dropdown-menu">
-              <li ng-repeat="nivel_3 in nivel_2.Opciones" ><a ng-href="#/" ng-if="nivel_3.Opciones === null">{{nivel_3.Nombre}}</a></li>
+              <li ng-repeat="nivel_3 in nivel_2.Opciones">
+                <a ng-href="{{'#/' + nivel_3.Url}}" ng-if="nivel_3.Opciones === null" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre])">
+                  {{nivel_3.Nombre}}
+                </a>
+              </li>
               <li class="dropdown dropdown-submenu" ng-repeat="nivel_3 in nivel_2.Opciones">
                 <a ng-href="#/" class="dropdown-toggle" data-toggle="dropdown" ng-if="nivel_3.Opciones !== null">{{nivel_3.Nombre}}
                 </a>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="nivel_4 in nivel_3.Opciones" ><a ng-href="#/">{{nivel_4.Nombre}}</a></li>
+                  <li ng-repeat="nivel_4 in nivel_3.Opciones">
+                    <a ng-href="{{'#/' + nivel_4.Url}}" ng-click="refresh_breadcrum([nivel_1.Nombre,nivel_2.Nombre, nivel_3.Nombre, nivel_4.Nombre])">
+                      {{nivel_4.Nombre}}
+                    </a></li>
                 </ul>
               </li>
             </ul>
@@ -45,7 +55,7 @@
 
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="{{menuCtrl.actual}}">
-          <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+          <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-messages">
           <li>
@@ -98,7 +108,7 @@
       <!-- /.dropdown -->
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#/">
-          <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+          <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-alerts">
           <li>
@@ -158,14 +168,15 @@
       <!-- /.dropdown -->
       <li class="dropdown" ng-if="token_service.live_token()">
         <a class="dropdown-toggle" data-toggle="dropdown" ng-href="{{menuCtrl.actual}}">
-          <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+          <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
         </a>
-        <ul class="dropdown-menu dropdown-user" >
-          <li><a ng-click="">
+        <ul class="dropdown-menu dropdown-user">
+          <li>
+            <a ng-click="">
               <i class="fa fa-sign-in fa-fw"></i> {{token_service.token.name}}</a>
             </a>
           </li>
-          <li><a ><i class="fa fa-gear fa-fw"></i> Settings</a>
+          <li><a><i class="fa fa-gear fa-fw"></i> Settings</a>
           </li>
           <li class="divider"></li>
           <li><a ng-click="token_service.logout()"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -174,14 +185,9 @@
         <!-- /.dropdown-user -->
       </li>
       <li ng-if="!token_service.live_token()">
-        <oauth2
-            authorization-url="{{token_service.config.AUTORIZATION_URL}}"
-            client-id="{{token_service.config.CLIENTE_ID}}"
-            redirect-url="{{token_service.config.REDIRECT_URL}}"
-            response-type="{{token_service.config.RESPONSE_TYPE}}"
-            scope="{{token_service.config.SCOPE}}"
+        <oauth2 authorization-url="{{token_service.config.AUTORIZATION_URL}}" client-id="{{token_service.config.CLIENTE_ID}}" redirect-url="{{token_service.config.REDIRECT_URL}}" response-type="{{token_service.config.RESPONSE_TYPE}}" scope="{{token_service.config.SCOPE}}"
             button-class="{{token_service.config.BUTTON_CLASS}}">
-          </oauth2>
+        </oauth2>
       </li>
       <!-- /.dropdown -->
     </ul>
@@ -193,7 +199,6 @@
   <!-- /.navbar-static-side -->
 </nav>
 <ul class="breadcrumb">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Services</a></li>
-    <li class="active">Data Mining</li>
+  <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+  <li ng-repeat="option in breadcrumb"><a href="#">{{option}}</a></li>
 </ul>

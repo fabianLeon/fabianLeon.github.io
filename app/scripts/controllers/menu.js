@@ -4,7 +4,6 @@ angular.module('prototipoApp')
     var ctrl = this;
     ctrl.actual = $location.path();
     $scope.token_service = token_service;
-
     $scope.menu_service = [
     {
       "Id": 4,
@@ -52,7 +51,10 @@ angular.module('prototipoApp')
       ]
     }
   ];
-  console.log($scope.menu_service[1].Opciones.length);
+    $scope.refresh_breadcrumb = function(breadcrumb){
+      $scope.breadcrumb = breadcrumb;
+    }
+    $scope.breadcrumb = ["menu1", "menu2", "menu3"];
     //Pendiente por definir json del menu
     (function($) {
       $(document).ready(function() {
