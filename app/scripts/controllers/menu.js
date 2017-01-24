@@ -7,7 +7,7 @@ angular.module('prototipoApp')
     $scope.menu_service = [{
       "Id": 2,
       "Nombre": "nivel 1",
-      "Url": "argo.com/gestioncontratos",
+      "Url": "url_nivel_1",
       "Opciones": [{
         "Id": 3,
         "Nombre": "nivel 2",
@@ -22,23 +22,8 @@ angular.module('prototipoApp')
             "Url": "about",
             "Opciones": null
           }]
-        }, {
-          "Id": 7,
-          "Nombre": "Agregar Contrato",
-          "Url": "url_agregar_contrato",
-          "Opciones": null
         }]
-      }, {
-        "Id": 4,
-        "Nombre": "Contratos asdf",
-        "Url": "url_contrato_asdf",
-        "Opciones": null
       }]
-    }, {
-      "Id": 4,
-      "Nombre": "About",
-      "Url": "url_about",
-      "Opciones": null
     }];
 
     var recorrerArbol = function(item, padre) {
