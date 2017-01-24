@@ -199,6 +199,13 @@
   <!-- /.navbar-static-side -->
 </nav>
 <ul class="breadcrumb">
-  <li><a href="#"><i class="fa fa-home" aria-hidden="true"></i></a></li>
-  <li ng-repeat="option in breadcrumb"><a href="#">{{option}}</a></li>
+  <li ng-repeat="option in breadcrumb" ng-if="option === ''" class="breadcrumb-item">
+    <a href="#"><i class="fa fa-home" aria-hidden="true"></i>{{option}}</a>
+  </li>
+  <li ng-repeat="option in breadcrumb" ng-if="$middle" class="breadcrumb-item">
+    <a href="#">{{option}}</a>
+  </li>
+  <li ng-repeat="option in breadcrumb" ng-if="$last" class="breadcrumb-item active">
+    {{option}}
+  </li>
 </ul>
