@@ -4977,7 +4977,7 @@ var AppModule = /** @class */ (function () {
                                 endpoint: 'https://accounts.google.com/o/oauth2/v2/auth',
                                 responseType: _nebular_auth__WEBPACK_IMPORTED_MODULE_13__["NbOAuth2ResponseType"].TOKEN,
                                 scope: 'https://www.googleapis.com/auth/userinfo.profile',
-                                redirectUri: 'localhost',
+                                redirectUri: 'https://fabianleon.github.io/',
                             },
                         }),
                     ],
