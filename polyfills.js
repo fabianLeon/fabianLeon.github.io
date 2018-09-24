@@ -10612,7 +10612,7 @@ if (typeof SVGElement.prototype.contains === 'undefined') {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\fabi_\Desktop\ngx-admin\process\src\polyfills.ts */"./src/polyfills.ts");
+module.exports = __webpack_require__(/*! /home/fabian/clust/process/src/polyfills.ts */"./src/polyfills.ts");
 
 
 /***/ })
