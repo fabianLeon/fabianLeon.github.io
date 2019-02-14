@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<div class=\"container\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}!\n    </h1>\n  </div>\n  <h2>Suggestion: </h2>\n  <table class=\"table table-dark table-hover table-striped\">\n    <thead class=\"thead-light\">\n      <tr>\n        <th>Check</th>\n        <th>Info</th>\n        <th>Suggestion</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of items\">\n        <td>\n          <mat-checkbox class=\"example-margin\" [(ngModel)]=\"item.checked\" [ngModelOptions]=\"{standalone: true}\">\n          </mat-checkbox>\n        </td>\n        <td>{{item.message}}\n        </td>\n        <td>\n          <textarea matInput [(ngModel)]=\"item.message\" cdkTextareaAutosize #autosize=\"cdkTextareaAutosize\"\n            cdkAutosizeMinRows=\"2\" cdkAutosizeMaxRows=\"5\">\n                    </textarea>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n    <button type=\"button\" (click)=\"add()\" class=\"btn btn-secondary\">New</button>\n    <button type=\"button\" (click)=\"remove()\" class=\"btn btn-secondary\">Remove</button>\n    <button type=\"button\" (click)=\"save()\" class=\"btn btn-secondary\">Save</button>\n    <button type=\"button\" (click)=\"generate()\" class=\"btn btn-secondary\">Generate</button>\n  </div>\n  <hr>\n  <h5>Text Generated</h5>\n  <div>\n    {{generated}}\n  </div>\n</div>"
+module.exports = "<!--The content below is only a placeholder and can be replaced.-->\n\n<div class=\"container\">\n  <div style=\"text-align:center\">\n    <h1>\n      {{ title }}!\n    </h1>\n  </div>\n  <h2>Suggestion: </h2>\n  <table class=\"table table-dark table-hover table-striped\">\n    <thead class=\"thead-light\">\n      <tr>\n        <th>Check</th>\n        <th>Info</th>\n        <th>Suggestion</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of items\">\n        <td>\n          <mat-checkbox class=\"example-margin\" [(ngModel)]=\"item.checked\" [ngModelOptions]=\"{standalone: true}\">\n          </mat-checkbox>\n        </td>\n        <td (click)=\"item.checked = !item.checked\">{{item.message}}</td>\n        <td>\n          <textarea #userinput matInput [(ngModel)]=\"item.message\" cdkTextareaAutosize>\n          </textarea>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n  <div class=\"btn-group\" role=\"group\" aria-label=\"Basic example\">\n    <button type=\"button\" (click)=\"add()\" class=\"btn btn-secondary\">New</button>\n    <button type=\"button\" (click)=\"remove()\" class=\"btn btn-secondary\">Remove</button>\n    <button type=\"button\" (click)=\"save()\" class=\"btn btn-secondary\">Save</button>\n    <button type=\"button\" (click)=\"generate()\" class=\"btn btn-secondary\">Generate & copy</button>\n    <button type=\"button\" (click)=\"export()\" class=\"btn btn-secondary\">export</button>\n    <input type=\"file\" id=\"import\" name=\"import\" (change)=\"import($event)\" accept=\"'*'\"\n    capture>\n  </div>\n  <hr>\n  <h5>Text Generated</h5>\n  <div>\n    {{generated}}\n  </div>\n</div>"
 
 /***/ }),
 
@@ -56,6 +56,8 @@ module.exports = "<!--The content below is only a placeholder and can be replace
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppComponent", function() { return AppComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ngx_clipboard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ngx-clipboard */ "./node_modules/ngx-clipboard/fesm5/ngx-clipboard.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -66,10 +68,19 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(copy, http) {
+        this.copy = copy;
+        this.http = http;
         this.title = 'Suggestions';
         this.generated = '';
+        this.setting = {
+            element: {
+                dynamicDownload: null
+            }
+        };
         this.items = [{
                 message: 'is simply dummy text of the printing and typesetting industry. ' +
                     'Lorem Ipsum has been the standard dummy text ever since the 1500s',
@@ -90,13 +101,46 @@ var AppComponent = /** @class */ (function () {
         console.log(this.items);
         this.items.pop();
     };
-    AppComponent.prototype.generate = function () {
+    AppComponent.prototype.generate = function (inputElement) {
         var _this = this;
         this.generated = '';
         var checked = this.items.filter(function (a) { return a.checked; });
         checked.forEach(function (element) {
             _this.generated += element.message;
         });
+        this.copy.copyFromContent(this.generated);
+    };
+    AppComponent.prototype.export = function () {
+        this.save();
+        this.dyanmicDownloadByHtmlTag({
+            fileName: 'struct.json',
+            text: localStorage.getItem('items'),
+        });
+    };
+    AppComponent.prototype.import = function (event) {
+        var _this = this;
+        // console.info(event.srcElement.files);
+        var url = URL.createObjectURL(event.srcElement.files.item(0));
+        this.http
+            .get(url, {
+            headers: { observe: 'response' },
+            responseType: 'text',
+        })
+            .subscribe(function (x) {
+            _this.items = JSON.parse(x);
+            localStorage.setItem('items', JSON.stringify(_this.items));
+        });
+    };
+    AppComponent.prototype.dyanmicDownloadByHtmlTag = function (arg) {
+        if (!this.setting.element.dynamicDownload) {
+            this.setting.element.dynamicDownload = document.createElement('a');
+        }
+        var element = this.setting.element.dynamicDownload;
+        var fileType = arg.fileName.indexOf('.json') > -1 ? 'text/json' : 'text/plain';
+        element.setAttribute('href', "data:" + fileType + ";charset=utf-8," + encodeURIComponent(arg.text));
+        element.setAttribute('download', arg.fileName);
+        var event = new MouseEvent('click');
+        element.dispatchEvent(event);
     };
     // tslint:disable-next-line:use-life-cycle-interface
     AppComponent.prototype.ngOnInit = function () {
@@ -114,7 +158,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./app.component.html */ "./src/app/app.component.html"),
             styles: [__webpack_require__(/*! ./app.component.css */ "./src/app/app.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [ngx_clipboard__WEBPACK_IMPORTED_MODULE_1__["ClipboardService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -136,10 +180,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
-/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/input */ "./node_modules/@angular/material/esm5/input.es5.js");
+/* harmony import */ var ngx_clipboard__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-clipboard */ "./node_modules/ngx-clipboard/fesm5/ngx-clipboard.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -153,25 +199,29 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_0__["BrowserModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_4__["BrowserAnimationsModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_5__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormsModule"],
-                _angular_material_input__WEBPACK_IMPORTED_MODULE_6__["MatInputModule"],
+                _angular_material_input__WEBPACK_IMPORTED_MODULE_7__["MatInputModule"],
+                ngx_clipboard__WEBPACK_IMPORTED_MODULE_8__["ClipboardModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
             ],
-            exports: [_angular_material__WEBPACK_IMPORTED_MODULE_5__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_5__["MatCheckboxModule"]],
-            providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_3__["AppComponent"]]
+            exports: [_angular_material__WEBPACK_IMPORTED_MODULE_6__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatCheckboxModule"]],
+            providers: [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
