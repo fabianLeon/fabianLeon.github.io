@@ -2,6 +2,59 @@
 
 (function ($) {
 
+	var invitados_array = {
+		abuelita: "Elisa Otalora",
+		alejoysandris: "Alejandro Gutiérrez y Sandra Quiroga",
+		nata: "Señorita Natali Quiroga",
+		carlitos: "Carlos Murcia y Paula Rodríguez",
+		willi: "William Rodríguez y Claudia Ayala",
+		pinchipito: "Hernando Pulido",
+		marisol: "Orlando Rodríguez y Marisol Chacón",
+		zaida: "Zaida Carvajal",
+		jaime: "Jaime Serrano y Martha Martínez",
+		dani: "Señorita Daniela Briceño",
+		vale: "Valentina Briceño y Santiago Barrera",
+		papitos: "Juan Francisco Briceño y Mariela Novoa",
+		juanchis: "Juan Camilo Briceño",
+		rosalba: "Luis Alberto Quiroga y Rosalba Novoa",
+		jorgeyclarita: "Jorge Pacheco y Clarita Briceño",
+		andresBri: "Andrés Briceño y Yessica Granados",
+		xiomi: "Xiomara y Andres",
+		pedrito: "Marielisa y Pedro",
+		angela: "Ángela e Ivan",
+		ferchito: "Fernando Sánchez Esposa e Hijos.",
+		tio_willi: "William Velasco y Cindy Duque",
+		daniel: "Daniel Mendoza y Nataly Salcedo",
+		andres: "Andrés Villamil y Laura Soler",
+		lulu: "Luisa Fernanda Velasco",
+		ralf: "Andrés Montoya y Mary Ramírez",
+		luzclarita: "Luz Dary Gómez y Rodrigo Gómez",
+		pardo: "Fredy Pardo y Yulier Urrea",
+		niños: "Alejandro Sánchez Esteban Sánchez Juan Pablo Sánchez",
+		mamita: "Alejandro Sánchez y Gloria Yency León",
+		davidysaris: "David y Saris",
+		primos: "Cristian Sánchez y Briggite Sánchez",
+		tiojairo: "Jairo Sánchez y Yadira Rodríguez",
+		pastores: "Pastor Aníbal Vanegas y Pastora Gladis Reyes",
+		amormio: "Fabián Sánchez y Laura Briceño",
+		danito: "Dany Cruz y Kate",
+		jhoan: "Jhoan y Marcela",
+		lore: "Lorena Briceño y Carlos Ibarra"
+	}
+	if (typeof window.location.search.split('=')[1] !== 'undefined') {
+		if (window.location.search.split('=')[1] in invitados_array) {
+			var index = window.location.search.split('=')[1];
+			invitados.innerText = invitados_array[index];
+		} else {
+			invitados.innerText = ""
+
+		}
+
+	} else {
+		invitados.innerText = ""
+
+	}
+
 	"use strict";
 
 	// JQUERY LIGHT BOX
