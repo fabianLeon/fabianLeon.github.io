@@ -40,7 +40,8 @@
 		danito: "Dany Cruz y Kate",
 		jhoan: "Jhoan y Marcela",
 		lore: "Lorena Briceño y Carlos Ibarra",
-		lucho_lucho: "Luis Briceño y Familia"
+		lucho_lucho: "Luis Briceño, Doris Padilla & Nataly Briceño",
+		sergio: "Sergio Briceño y Esposa"
 	}
 	if (typeof window.location.search.split('=')[1] !== 'undefined') {
 		if (window.location.search.split('=')[1] in invitados_array) {
