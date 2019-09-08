@@ -30,7 +30,7 @@
 		ralf: "Andrés Montoya y Mary Ramírez",
 		luzclarita: "Luz Dary Gómez y Rodrigo Gómez",
 		pardo: "Fredy Pardo y Yulier Urrea",
-		niños: "Alejandro Sánchez Esteban Sánchez Juan Pablo Sánchez",
+		mis_chiquitines: "Alejandro Sánchez Esteban Sánchez Juan Pablo Sánchez",
 		mamita: "Alejandro Sánchez y Gloria Yency León",
 		davidysaris: "David y Saris",
 		primos: "Cristian Sánchez y Briggite Sánchez",
