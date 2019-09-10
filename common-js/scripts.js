@@ -30,6 +30,7 @@
 		ralf: "Andrés Montoya y Mary Ramírez",
 		luzclarita: "Luz Dary Gómez y Rodrigo Gómez",
 		pardo: "Fredy Pardo y Yulier Urrea",
+		fabian_tatiana: "Fabián Roncancio y Tatiana Aguas",
 		mis_chiquitines: "Alejandro Sánchez Esteban Sánchez Juan Pablo Sánchez",
 		mamita: "Alejandro Sánchez y Gloria Yency León",
 		davidysaris: "David y Saris",
