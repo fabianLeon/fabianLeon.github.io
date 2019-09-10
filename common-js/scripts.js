@@ -3,6 +3,7 @@
 (function ($) {
 
 	var invitados_array = {
+Xavi:"Xavier Botero",
 		abuelita: "Elisa Otalora",
 		alejoysandris: "Alejandro Gutiérrez y Sandra Quiroga",
 		nata: "Señorita Natali Quiroga",
